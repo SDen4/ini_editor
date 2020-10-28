@@ -1,21 +1,18 @@
-.buttonCommon {
-    border-radius: 5px;
+.button {
+    border-radius: 10px;
     outline: none;
     padding: 5px 10px;
-}
-
-.buttonActive {
-    background-color: $main-color;
-    transition: .5s;
-    &:hover {
-        background-color: pink;
+    font-size: 24px;
+    margin-bottom: 20px;
+    &:last-child {
+        margin-bottom: 0;
     }
 }
 
-.buttonUnActive {
-    background-color: green;
-    transition: .5s;
+.button__mode {
+    background-color: $button;
+    transition: $transitionDuration;
     &:hover {
-        background-color: rgb(66, 190, 42);
+        background-color: $buttonGreenHover;
     }
 }

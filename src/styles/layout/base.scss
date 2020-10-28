@@ -24,10 +24,6 @@ body, button, ul, p, h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 
-button {
-  cursor: pointer;
-}
-
 ul {
   list-style: none;
 }
@@ -36,12 +32,16 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
 
-button[type="button"] {
+button, a {
   cursor: pointer;
-  background-color: transparent;
+}
+
+button {
+  font: {
+    family: $mainFont;
+  }
 }
 
 a {
   color: inherit;
-  cursor: pointer;
 }

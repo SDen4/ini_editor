@@ -1,15 +1,20 @@
 //colors
-    $main-color: red;
-    $default-color: blue;
-    $pink: pink;
-    $gray: gray;
-    $green: green;
+    $textColor: #222;
+    $borderColor: gray;
+
+//buttons
+    $button: #DCDCDC;
+    $buttonGreenHover: rgb(127, 172, 119);
+    $buttonActive: green;
 
 //fonts
     $mainFont: 'Open Sans', Helvetica, sans-serif;
 
 //font sizes
     $mainFontSize: 16px;
+
+//animation
+    $transitionDuration: .5s;
 
 //resolutions
     $desktop: 1280px;
