@@ -14,7 +14,7 @@ $ npm run dev
 ```
 
 
-<!-- ### Watch on [github-pages](<link>) -->
+### Open on [github-pages](https://sden4.github.io/ini_editor/)
 
 <!-- 
 github pages
