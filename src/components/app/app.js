@@ -14,9 +14,14 @@ class App extends Component {
                             <button className='button button__mode' type='button'>Text mode</button>
                             <button className='button button__mode' type='button'>Graph mode</button>
                         </div>
-                        <div className='app__buttons_wrapper'>
-                            <button className='button button__mode' type='button'>Download file</button>
-                        </div>
+                        <label className='app__buttons_wrapper' htmlFor='app__input'>
+                            <input
+                                id='app__input'
+                                className='button button__mode'
+                                type='file'
+                            ></input>
+                            <div className='button button__mode button__mode_input'>Download file</div>
+                        </label>
                     </div>
                 </section>
             </article>
