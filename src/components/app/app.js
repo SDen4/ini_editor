@@ -12,7 +12,7 @@ class App extends Component {
             <article className='app'>
                 <h1 className='app__title'>ini-editor</h1>
                 <section className='app__container'>
-                    <Editor objectText={this.state.object} graphMode={this.state.graphMode}/>
+                    <Editor object={this.state.object} graphMode={this.state.graphMode}/>
                     <div className='app__buttons'>
                         <div className='app__buttons_wrapper'>
                             <button

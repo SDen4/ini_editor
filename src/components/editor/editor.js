@@ -4,32 +4,32 @@ import React, {Component} from 'react';
 class Editor extends Component {
     state = {
         keys: [],
-        object: this.props.object
+        info: [],
     }
-    // componentDidMount() {
-    //     this.counting();
-    // }
     render() {
-        // let list = this.state.keys.map(key => <h2 className='editor__section' key={key}>{key}</h2>);
+        let list = this.state.keys.map(key => <li className='editor__item' key={key}><h2 className='editor__section'>{key}</h2></li>);
         return (
             <article className='editor'>
                 <h1 className='editor__title'>{this.props.graphMode ? 'Graph mode' : 'Text mode'}</h1>
-                <div className='editor__content'>
-                    {/* {list} */}
-                    {/* <button className='test' onClick={this.counting}>Test</button> */}
-                </div>
+                <ul className='editor__list'>
+                    {list}
+                    <button className='test' onClick={this.counting}>Test</button>
+                </ul>
             </article>
         );
     }
     counting = () => {
-        // let object = this.props.object;
-        // console.log(object);
-        let arr = [];
-        for (let key in this.state.object) {
+        let object = this.props.object;
+        console.log(object);
+        let arrKeys = [];
+        let arrInfo = [];
+        for (let key in object) {
             console.log(key)
-            arr.push(key);
+            arrKeys.push(key);
+            arrInfo.push(object[key]);
             this.setState({
-                keys: arr
+                keys: arrKeys,
+                info: arrInfo,
             })
         }
     }
