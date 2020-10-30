@@ -4,18 +4,22 @@ import Editor from '../editor/editor';
 
 class App extends Component {
     state = {
-        object: {}
+        object: {},
+        graphMode: true
     }
     render() {
         return (
             <article className='app'>
                 <h1 className='app__title'>ini-editor</h1>
                 <section className='app__container'>
-                    <Editor objectText={this.state.object} />
+                    <Editor objectText={this.state.object} graphMode={this.state.graphMode}/>
                     <div className='app__buttons'>
                         <div className='app__buttons_wrapper'>
-                            <button className='button button__mode' type='button'>Text mode</button>
-                            <button className='button button__mode' type='button'>Graph mode</button>
+                            <button
+                                className='button button__mode'
+                                type='button'
+                                onClick={this.changeMode}
+                            >{this.state.graphMode ? 'Graph mode' : 'Text mode'}</button>
                         </div>
                         <label className='app__buttons_wrapper' htmlFor='app__input'>
                             <input
@@ -32,6 +36,11 @@ class App extends Component {
             </article>
         );
     }
+    changeMode = () => {
+        this.setState({
+            graphMode: !this.state.graphMode
+        })
+    }
     handleFileLoad(e) {
         e.preventDefault();
 
@@ -46,7 +55,6 @@ class App extends Component {
               object: obj
             })
         };
-
         // let res = this.parseINIString(this.state.file);
         // localStorage.setItem('file', res);
     }
