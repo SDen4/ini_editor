@@ -22,9 +22,10 @@ class App extends Component {
                                 id='app__input'
                                 className='button button__mode'
                                 type='file'
+                                accept=".ini"
                                 onChange={(e)=>this.handleFileLoad(e)}
                             ></input>
-                            <div className='button button__mode button__mode_input'>Download file</div>
+                            <div className='button button__mode button__mode_input'>Download ini-file</div>
                         </label>
                     </div>
                 </section>
