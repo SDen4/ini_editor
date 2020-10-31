@@ -12,6 +12,7 @@
 .button__mode {
     background-color: $button;
     transition: $transitionDuration;
+    cursor: pointer;
     &:hover {
         background-color: $buttonGreenHover;
     }
