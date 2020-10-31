@@ -26,7 +26,7 @@ class App extends Component {
                                 className='button button__mode'
                                 type='button'
                                 onClick={this.changeMode}
-                            >{this.state.graphMode ? 'Graph mode' : 'Text mode'}</button>
+                            >{this.state.graphMode ? 'Text mode' : 'Graph mode'}</button>
                         </div>
                         <label className='app__buttons_wrapper' htmlFor='app__input'>
                             <input
