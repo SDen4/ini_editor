@@ -3,22 +3,22 @@ import React, {Component} from 'react';
 
 class Editor extends Component {
     render() {
+        // const listInfo = this.props.info.map( (key, index) => { 
+        //     return <li className='editor__item' key={index}><h2 className='editor__section'>{key.props}</h2></li>
+        // });
         const listKeys = this.props.graphMode && this.props.keys.map( (key) => { 
             return <li className='editor__item' key={key}><h2 className='editor__section'>{key}</h2></li>
         });
 
-    const listKeysGraphMode = this.props.graphMode && <ul className='editor__wrapper'>{listKeys}</ul>
+        const editorGraph = <ul className='editor__wrapper'>{listKeys}</ul>;
 
-        // const listInfo = this.props.info.map( (key, index) => { 
-        //     return <li className='editor__item' key={index}><h2 className='editor__section'>{key.props}</h2></li>
-        // });
+        const editorText = <label className='editor__wrapper'>
+            <textarea className='editor__textMode'>{this.props.key}</textarea>
+            <button className='button button__mode button__save' type='button'>Save</button>
+        </label>;
 
-        const editorTextArea = <label className='editor__wrapper'>
-                                    <textarea className='editor__textMode'>{this.props.key}</textarea>
-                                    <button className='button button__mode' type='button'>Save</button>
-                                </label>;
-
-        const listKeysTextMode = !this.props.graphMode && editorTextArea;
+        const listKeysGraphMode = this.props.graphMode && editorGraph;
+        const listKeysTextMode = !this.props.graphMode && editorText;
 
         return (
             <article className='editor'>
