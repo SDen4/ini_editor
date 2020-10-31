@@ -5,14 +5,21 @@ import Editor from '../editor/editor';
 class App extends Component {
     state = {
         object: {},
-        graphMode: true
+        keys: [],
+        info: [],
+        graphMode: true,
     }
     render() {
         return (
             <article className='app'>
                 <h1 className='app__title'>ini-editor</h1>
                 <section className='app__container'>
-                    <Editor object={this.state.object} graphMode={this.state.graphMode}/>
+                    <Editor
+                        object={this.state.object}
+                        keys={this.state.keys}
+                        info={this.state.info}
+                        graphMode={this.state.graphMode}
+                    />
                     <div className='app__buttons'>
                         <div className='app__buttons_wrapper'>
                             <button
@@ -45,14 +52,25 @@ class App extends Component {
         e.preventDefault();
 
         let file = e.target.files[0];
+        let arrKeys = [];
+        let arrInfo = [];
+
         let reader = new FileReader();
         reader.readAsText(file);
 
         reader.onloadend = () => {
             let obj = this.parseINIString(reader.result);
             console.log(obj);
+
+            for (let key in obj) {
+                arrKeys.push(key);
+                arrInfo.push(obj[key]);
+            }
+
             this.setState({
-              object: obj
+                object: obj,
+                keys: arrKeys,
+                info: arrInfo,
             })
         };
         // let res = this.parseINIString(this.state.file);
