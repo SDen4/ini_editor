@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 
 
 class Editor extends Component {
+    state = {
+        iniText: ''
+    }
     render() {
         const listInfo = this.props.info.map( (key, index) => { 
             return <li className='editor__item' key={index}><h2 className='editor__section'>{key.props}</h2></li>
@@ -15,7 +18,8 @@ class Editor extends Component {
         const editorText = <label className='editor__wrapper'>
             <textarea
                 className='editor__textMode'
-                value={this.props.str}
+                defaultValue={this.props.str}
+                onChange={this.handleChange}
             ></textarea>
             <button className='button button__mode button__save' type='button'>Save</button>
         </label>;
@@ -37,6 +41,11 @@ class Editor extends Component {
                 {/* </ul> */}
             </article>
         );
+    }
+    handleChange = (e) => {
+        this.setState({
+            iniText: e.target.value
+        })
     }
 };
 
