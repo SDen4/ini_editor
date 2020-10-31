@@ -3,17 +3,20 @@ import React, {Component} from 'react';
 
 class Editor extends Component {
     render() {
-        // const listInfo = this.props.info.map( (key, index) => { 
-        //     return <li className='editor__item' key={index}><h2 className='editor__section'>{key.props}</h2></li>
-        // });
+        const listInfo = this.props.info.map( (key, index) => { 
+            return <li className='editor__item' key={index}><h2 className='editor__section'>{key.props}</h2></li>
+        });
         const listKeys = this.props.graphMode && this.props.keys.map( (key) => { 
             return <li className='editor__item' key={key}><h2 className='editor__section'>{key}</h2></li>
         });
 
-        const editorGraph = <ul className='editor__wrapper'>{listKeys}</ul>;
+        const editorGraph = <ul className='editor__wrapper'>{listKeys}{listInfo}</ul>;
 
         const editorText = <label className='editor__wrapper'>
-            <textarea className='editor__textMode'>{this.props.key}</textarea>
+            <textarea
+                className='editor__textMode'
+                value={this.props.str}
+            ></textarea>
             <button className='button button__mode button__save' type='button'>Save</button>
         </label>;
 

@@ -7,6 +7,7 @@ class App extends Component {
         object: {},
         keys: [],
         info: [],
+        str: '',
         graphMode: true,
     }
     render() {
@@ -18,6 +19,7 @@ class App extends Component {
                         object={this.state.object}
                         keys={this.state.keys}
                         info={this.state.info}
+                        str={this.state.str}
                         graphMode={this.state.graphMode}
                     />
                     <div className='app__buttons'>
@@ -59,8 +61,10 @@ class App extends Component {
         reader.readAsText(file);
 
         reader.onloadend = () => {
+            let str = reader.result;
             let obj = this.parseINIString(reader.result);
             console.log(obj);
+            console.log(str);
 
             for (let key in obj) {
                 arrKeys.push(key);
@@ -71,6 +75,7 @@ class App extends Component {
                 object: obj,
                 keys: arrKeys,
                 info: arrInfo,
+                str: str,
             })
         };
         // let res = this.parseINIString(this.state.file);
