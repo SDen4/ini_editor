@@ -8,7 +8,7 @@ class Editor extends Component {
     }
     render() {
         //graph mode
-        const listInfo = this.props.arrayData.map( (key) => {
+        const listInfo = this.props.arrayData.map( (key, index) => {
             let arrayTotal = []
             if(typeof key === 'string') {
                 arrayTotal.push(<h2 key={key} className='editor__graphMode_subtitle'>{key}</h2>)
@@ -18,8 +18,10 @@ class Editor extends Component {
                         <label className='editor__graphMode_label' key={item}>
                             <span>{item}</span>
                             <input
-                                type={isFinite(key[item]) ? 'number' : 'text'}
+                                className='editor__grahpMode_input'
+                                type={isFinite(key[item]) ? 'number' : 'text'} //check input for numbers
                                 defaultValue={key[item]}
+                                name={item + index} //plus index for unic name
                                 onChange={this.handleChangeGraph}
                             ></input>
                         </label>
@@ -30,7 +32,17 @@ class Editor extends Component {
             }
             return arrayTotal;
         });
-        const editorGraph = <form className='editor__wrapper'>{listInfo}</form>;
+        const editorGraph = this.props.arrayData.length !=0 &&
+            <form className='editor__wrapper'>
+                {listInfo}
+                <div className='editor__graphMode_buttons'>
+                    <button
+                        className='button button__mode'
+                        type='button'
+                    >+</button>
+                    <span className='editor__graphMode_buttons_text'>Add new section</span>
+                </div>
+            </form>;
 
         //test mode
         const editorText = 
@@ -41,7 +53,6 @@ class Editor extends Component {
                     onChange={this.handleChangeText}
                 ></textarea>
                 <button
-                    // className='button button__mode button__save'
                     className={`${this.state.buttonSaveActive && 'button__mode'} ${'button button__save'}`}
                     type='submit'
                 >Save</button>
@@ -50,9 +61,13 @@ class Editor extends Component {
         //conditions of choode one of two modes
         const choosenMode = this.props.graphMode ? editorGraph : editorText;
 
+        const notice = this.props.arrayData.length == 0 && 
+            <div className='editor__notice'>Please, download ini-file.</div>
+
         return (
             <article className='editor'>
                 <h1 className='editor__title'>{this.props.graphMode ? 'Graph mode' : 'Text mode'}</h1>
+                {notice}
                 {choosenMode}
             </article>
         );
@@ -61,6 +76,7 @@ class Editor extends Component {
         this.setState({
             [e.target.name]: e.target.value
         })
+        console.log(this.state)
     }
     handleChangeText = (e) => {
         this.setState({
@@ -68,13 +84,19 @@ class Editor extends Component {
             buttonSaveActive: true
         })
     }
+
+    //save text mode file
     saveTextMode = (e) => {
         e.preventDefault();
+        let data = this.state.iniText;
+        this.saveData(data)
+    }
 
+    //save a new ini-file
+    saveData = (data) => {
         //protect saving witout changes & empty files
         if(!this.state.buttonSaveActive) return;
 
-        let data = this.state.iniText;
         let file = new Blob([data], {type: 'ini'});
 
         //IE10
