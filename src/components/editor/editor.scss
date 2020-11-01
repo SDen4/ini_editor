@@ -86,7 +86,7 @@
 }
 
 .editor__graphMode_label {
-    width: 50%;
+    width: 65%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
@@ -96,6 +96,7 @@
     background-color: $textareaBGCOlor;
     border: 0;
     border-radius: 3px;
+    padding: 0 10px;
     font-size: 16px;
 }
 
@@ -108,5 +109,32 @@
         family: $mainFont;
         size: 24px;
     }
-    margin-left: 20px;
+    margin-left: 15px;
+}
+
+.editor__graph_addNewSection {
+    width: 100%;
+    min-height: 100%;
+    border-radius: 15px;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $addNewSectionBGColor;
+    z-index: 10;
+}
+
+.editor__graph_addNewSection_text {
+    margin-bottom: 20px;
+}
+
+.editor__graph_addNewSection_label {
+    display: flex;
+}
+
+.editor__grahpMode_input_addNewSection {
+    font-size: 24px;
+    margin-right: 20px;
 }

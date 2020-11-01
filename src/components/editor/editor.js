@@ -5,6 +5,8 @@ class Editor extends Component {
     state = {
         iniText: '',
         buttonSaveActive: false,
+        arrayData: this.props.arrayData,
+        addNewSectionFlag: false,
     }
     render() {
         //graph mode
@@ -16,7 +18,7 @@ class Editor extends Component {
                         <h2 key={key} className='editor__graphMode_subtitle'>{key}</h2>
                         <div className='editor__graphMode_subtitle_buttons'>
                             <button
-                                className='button button__mode'
+                                className='button button__mode button__add'
                                 type='button'
                             >+</button>
                             <span className='editor__graphMode_buttons_text'>Add new key</span>
@@ -42,14 +44,32 @@ class Editor extends Component {
             }
             return arrayTotal;
         });
+
+        const addNewSection = this.state.addNewSectionFlag && 
+            <form className='editor__graph_addNewSection' onSubmit={this.addNewSection}>
+                <h2 className='editor__graph_addNewSection_text'>Enter the name of new section</h2>
+                <label className='editor__graph_addNewSection_label'>
+                    <input
+                        className='editor__grahpMode_input editor__grahpMode_input_addNewSection'
+                        type='text'
+                    ></input>
+                    <button
+                        className='button button__mode button__add'
+                        type='submit'
+                    >+</button>
+                </label>
+            </form>
+
         const editorGraph = this.props.arrayData.length !=0 &&
             <form className='editor__wrapper'>
+                {addNewSection}
                 <div className='editor__wrapper_container'>
                     {listInfo}
                     <div className='editor__graphMode_buttons'>
                         <button
-                            className='button button__mode'
+                            className='button button__mode button__add'
                             type='button'
+                            onClick={this.addNewSectionModal}
                         >+</button>
                         <span className='editor__graphMode_buttons_text'>Add new section</span>
                     </div>
@@ -84,12 +104,28 @@ class Editor extends Component {
             </article>
         );
     }
+
+    addNewSectionModal = () => {
+        this.setState({
+            addNewSectionFlag: true
+        })
+    }
+
+    addNewSection = (e) => {
+        e.preventDefault();
+        console.log('added a new section!')
+        this.setState({
+            addNewSectionFlag: false
+        })
+    }
+
     handleChangeGraph = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
         console.log(this.state)
     }
+
     handleChangeText = (e) => {
         this.setState({
             iniText: e.target.value,
@@ -116,7 +152,7 @@ class Editor extends Component {
             window.navigator.msSaveOrOpenBlob(file, 'new_ini_file.ini');
         //others
         else {
-            let a = document.createElement("a"),
+            let a = document.createElement('a'),
                 url = URL.createObjectURL(file);
             a.href = url;
             a.download = 'new_ini_file.ini';
