@@ -5,12 +5,23 @@ class Editor extends Component {
     state = {
         iniText: '',
         buttonSaveActive: false,
-        arrayData: this.props.arrayData,
+        arrayData: [],
+        stringData: '',
         addNewSectionFlag: false,
+        newSectionName: '',
     }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.arrayData === prevProps.arrayData) return;
+        this.setState({
+            arrayData: this.props.arrayData,
+            stringData: this.props.stringData
+        })
+    }
+
     render() {
         //graph mode
-        const listInfo = this.props.arrayData.map( (key, index) => {
+        const listInfo = this.state.arrayData.map( (key, index) => {
             let arrayTotal = []
             if(typeof key === 'string') {
                 arrayTotal.push(
@@ -45,20 +56,23 @@ class Editor extends Component {
             return arrayTotal;
         });
 
+        //add new section in graph mode
         const addNewSection = this.state.addNewSectionFlag && 
-            <form className='editor__graph_addNewSection' onSubmit={this.addNewSection}>
+            <div className='editor__graph_addNewSection'>
                 <h2 className='editor__graph_addNewSection_text'>Enter the name of new section</h2>
                 <label className='editor__graph_addNewSection_label'>
                     <input
                         className='editor__grahpMode_input editor__grahpMode_input_addNewSection'
                         type='text'
+                        onChange={this.addNewSectionText}
                     ></input>
                     <button
                         className='button button__mode button__add'
-                        type='submit'
+                        type='button'
+                        onClick={this.addNewSection}
                     >+</button>
                 </label>
-            </form>
+            </div>
 
         const editorGraph = this.props.arrayData.length !=0 &&
             <form className='editor__wrapper'>
@@ -81,7 +95,7 @@ class Editor extends Component {
             <form className='editor__wrapper' onSubmit={this.saveTextMode}>
                 <textarea
                     className='editor__textMode'
-                    defaultValue={this.props.stringData}
+                    defaultValue={this.state.stringData}
                     onChange={this.handleChangeText}
                 ></textarea>
                 <button
@@ -105,20 +119,30 @@ class Editor extends Component {
         );
     }
 
+    //open modal of add new section
     addNewSectionModal = () => {
         this.setState({
-            addNewSectionFlag: true
+            addNewSectionFlag: true,
         })
     }
 
-    addNewSection = (e) => {
-        e.preventDefault();
-        console.log('added a new section!')
+    //new section name
+    addNewSectionText = (e) => {
         this.setState({
-            addNewSectionFlag: false
+            newSectionName: e.target.value
         })
     }
 
+    //add new section
+    addNewSection = () => {
+        this.setState({
+            addNewSectionFlag: false,
+            arrayData: [...this.state.arrayData, this.state.newSectionName],
+            newSectionName: '',
+        })
+    }
+
+    //change inputs data in graph mode
     handleChangeGraph = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -126,6 +150,7 @@ class Editor extends Component {
         console.log(this.state)
     }
 
+    //change data in text mode
     handleChangeText = (e) => {
         this.setState({
             iniText: e.target.value,
