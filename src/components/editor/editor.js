@@ -11,7 +11,17 @@ class Editor extends Component {
         const listInfo = this.props.arrayData.map( (key, index) => {
             let arrayTotal = []
             if(typeof key === 'string') {
-                arrayTotal.push(<h2 key={key} className='editor__graphMode_subtitle'>{key}</h2>)
+                arrayTotal.push(
+                    <div className='editor__graphMode_subtitle_wrapper'>
+                        <h2 key={key} className='editor__graphMode_subtitle'>{key}</h2>
+                        <div className='editor__graphMode_subtitle_buttons'>
+                            <button
+                                className='button button__mode'
+                                type='button'
+                            >+</button>
+                            <span className='editor__graphMode_buttons_text'>Add new key</span>
+                        </div>
+                    </div>)
             } else if (typeof key === 'object') {
                 for (let item in key) {
                     arrayTotal.push(
@@ -34,13 +44,15 @@ class Editor extends Component {
         });
         const editorGraph = this.props.arrayData.length !=0 &&
             <form className='editor__wrapper'>
-                {listInfo}
-                <div className='editor__graphMode_buttons'>
-                    <button
-                        className='button button__mode'
-                        type='button'
-                    >+</button>
-                    <span className='editor__graphMode_buttons_text'>Add new section</span>
+                <div className='editor__wrapper_container'>
+                    {listInfo}
+                    <div className='editor__graphMode_buttons'>
+                        <button
+                            className='button button__mode'
+                            type='button'
+                        >+</button>
+                        <span className='editor__graphMode_buttons_text'>Add new section</span>
+                    </div>
                 </div>
             </form>;
 
