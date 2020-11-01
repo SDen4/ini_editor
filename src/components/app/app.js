@@ -53,9 +53,13 @@ class App extends Component {
     handleFileLoad(e) {
         e.preventDefault();
 
+        //clear text area before download new file
+        this.setState({
+            str: ''
+        });
+
         let file = e.target.files[0];
-        let arrKeys = [];
-        let arrInfo = [];
+        let arrKeys = [], arrInfo = [];
 
         let reader = new FileReader();
         reader.readAsText(file);
@@ -78,7 +82,6 @@ class App extends Component {
                 str: str,
             })
         };
-        // let res = this.parseINIString(this.state.file);
         // localStorage.setItem('file', res);
     }
     //parser ini to object

@@ -71,7 +71,10 @@ class Editor extends Component {
                 document.body.removeChild(a);
                 window.URL.revokeObjectURL(url);
             }, 0);
-        }
+        };
+        this.setState({
+            buttonSaveActive: false
+        });
     }
 };
 
