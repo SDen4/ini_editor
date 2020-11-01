@@ -40,7 +40,7 @@ class Editor extends Component {
                         onChange={this.addNewKeyText}
                     ></input>
                     <button
-                        className={`${this.state.newKeyName && 'button__mode'} ${'button button__add'}`}
+                        className={`${(this.state.newKeyName && this.state.newKeyValue) && 'button__mode'} ${'button button__add'}`}
                         type='button'
                         onClick={this.addNewKey}
                     >+</button>
@@ -163,6 +163,8 @@ class Editor extends Component {
 
     //add new key
     addNewKey = () => {
+        //protection of input empty keys
+        if(!this.state.newKeyName || !this.state.newKeyValue) return;
         console.log(this.state.arrayData);
         let temparr = this.state.arrayData;
 
@@ -182,6 +184,8 @@ class Editor extends Component {
         this.setState({
             arrayData: newArr,
             addNewKeyFlag: false,
+            newKeyName: '',
+            newKeyValue: '',
         })
     }
 
