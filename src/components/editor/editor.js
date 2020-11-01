@@ -67,7 +67,7 @@ class Editor extends Component {
                         onChange={this.addNewSectionText}
                     ></input>
                     <button
-                        className='button button__mode button__add'
+                        className={`${this.state.newSectionName && 'button__mode'} ${'button button__add'}`}
                         type='button'
                         onClick={this.addNewSection}
                     >+</button>
@@ -135,6 +135,8 @@ class Editor extends Component {
 
     //add new section
     addNewSection = () => {
+        //protect saving empty section name
+        if(!this.state.newSectionName) return;
         this.setState({
             addNewSectionFlag: false,
             arrayData: [...this.state.arrayData, this.state.newSectionName],
