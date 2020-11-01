@@ -41,3 +41,14 @@
         size: $mainFontSize;
     }
 }
+
+.editor__graphMode_subtitle {
+    margin-bottom: 15px;
+}
+
+.editor__graphMode_label {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}

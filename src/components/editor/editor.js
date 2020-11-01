@@ -7,20 +7,33 @@ class Editor extends Component {
         buttonSaveActive: false,
     }
     render() {
-        const listInfo = this.props.info.map( (key, index) => { 
-            return <li className='editor__item' key={index}><h2 className='editor__section'>{key.props}</h2></li>
+        //graph mode
+        const listInfo = this.props.arrayData.map( (key, index) => {
+            let finalArr = []
+            if(typeof key === 'string') {
+                finalArr.push(<h2 key={key} className='editor__graphMode_subtitle'>{key}</h2>)
+            } else if (typeof key === 'object') {
+                for (let item in key) {
+                    finalArr.push(
+                        <label className='editor__graphMode_label' key={item}>
+                            <span>{item}</span>
+                            <input type='text' defaultValue={key[item]}></input>
+                        </label>
+                    );
+                }
+            } else {
+                throw new Error('unknown type of data');
+            }
+            return finalArr;
         });
-        const listKeys = this.props.graphMode && this.props.keys.map( (key) => { 
-            return <li className='editor__item' key={key}><h2 className='editor__section'>{key}</h2></li>
-        });
+        const editorGraph = <form className='editor__wrapper'>{listInfo}</form>;
 
-        const editorGraph = <ul className='editor__wrapper'>{listKeys}{listInfo}</ul>;
-
+        //test mode
         const editorText = 
             <form className='editor__wrapper' onSubmit={this.saveTextMode}>
                 <textarea
                     className='editor__textMode'
-                    defaultValue={this.props.str}
+                    defaultValue={this.props.stringData}
                     onChange={this.handleChange}
                 ></textarea>
                 <button
@@ -30,14 +43,13 @@ class Editor extends Component {
                 >Save</button>
             </form>;
 
-        const listKeysGraphMode = this.props.graphMode && editorGraph;
-        const listKeysTextMode = !this.props.graphMode && editorText;
+        //conditions of choode one of two modes
+        const choosenMode = this.props.graphMode ? editorGraph : editorText;
 
         return (
             <article className='editor'>
                 <h1 className='editor__title'>{this.props.graphMode ? 'Graph mode' : 'Text mode'}</h1>
-                {listKeysGraphMode}
-                {listKeysTextMode}
+                {choosenMode}
             </article>
         );
     }

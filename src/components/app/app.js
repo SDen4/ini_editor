@@ -4,10 +4,8 @@ import Editor from '../editor/editor';
 
 class App extends Component {
     state = {
-        object: {},
-        keys: [],
-        info: [],
-        str: '',
+        arrayData: [],
+        stringData: '',
         graphMode: true,
     }
     render() {
@@ -16,10 +14,8 @@ class App extends Component {
                 <h1 className='app__title'>ini-editor</h1>
                 <section className='app__container'>
                     <Editor
-                        object={this.state.object}
-                        keys={this.state.keys}
-                        info={this.state.info}
-                        str={this.state.str}
+                        stringData={this.state.stringData}
+                        arrayData={this.state.arrayData}
                         graphMode={this.state.graphMode}
                     />
                     <div className='app__buttons'>
@@ -55,7 +51,7 @@ class App extends Component {
 
         //clear text area before download new file
         this.setState({
-            str: ''
+            stringData: ''
         });
 
         let file = e.target.files[0];
@@ -65,21 +61,22 @@ class App extends Component {
         reader.readAsText(file);
 
         reader.onloadend = () => {
-            let str = reader.result;
+            let stringData = reader.result;
             let obj = this.parseINIString(reader.result);
+
             console.log(obj);
-            console.log(str);
+            let arrayData = [];
 
             for (let key in obj) {
-                arrKeys.push(key);
-                arrInfo.push(obj[key]);
+                arrayData.push(key);
+                arrayData.push(obj[key]);
             }
 
+            console.log(arrayData);
+
             this.setState({
-                object: obj,
-                keys: arrKeys,
-                info: arrInfo,
-                str: str,
+                stringData: stringData,
+                arrayData: arrayData,
             })
         };
         // localStorage.setItem('file', res);
