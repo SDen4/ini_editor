@@ -132,9 +132,16 @@
 
 .editor__graph_addNewSection_label {
     display: flex;
+    justify-content: center;
+    width: 98%;
 }
 
-.editor__grahpMode_input_addNewSection {
+.editor__grahpMode_input_addNewSection,
+.editor__grahpMode_input_addNewKey {
     font-size: 24px;
     margin-right : 20px;
+}
+
+.editor__grahpMode_input_addNewKey {
+    width: 45%;
 }

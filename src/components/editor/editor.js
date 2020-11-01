@@ -8,7 +8,9 @@ class Editor extends Component {
         arrayData: [],
         stringData: '',
         addNewSectionFlag: false,
+        addNewKeyFlag: false,
         newSectionName: '',
+        keyIndex: 0,
     }
 
     componentDidUpdate(prevProps) {
@@ -21,6 +23,30 @@ class Editor extends Component {
 
     render() {
         //graph mode
+        const addNewKey = this.state.addNewKeyFlag &&
+            <div className='editor__graph_addNewSection'>
+                <h2 className='editor__graph_addNewSection_text'>Enter the new key</h2>
+                <label className='editor__graph_addNewSection_label'>
+                    <input
+                        className='editor__grahpMode_input editor__grahpMode_input_addNewKey'
+                        type='text'
+                        name='newKeyName'
+                        onChange={this.addNewKeyText}
+                    ></input>
+                    <input
+                        className='editor__grahpMode_input editor__grahpMode_input_addNewKey'
+                        type='text'
+                        name='newKeyValue'
+                        onChange={this.addNewKeyText}
+                    ></input>
+                    <button
+                        className={`${this.state.newKeyName && 'button__mode'} ${'button button__add'}`}
+                        type='button'
+                        onClick={this.addNewKey}
+                    >+</button>
+                </label>
+            </div>
+
         const listInfo = this.state.arrayData.map( (key, index) => {
             let arrayTotal = []
             if(typeof key === 'string') {
@@ -31,6 +57,7 @@ class Editor extends Component {
                             <button
                                 className='button button__mode button__add'
                                 type='button'
+                                onClick={(e) => this.addNewKeyModal(index)}
                             >+</button>
                             <span className='editor__graphMode_buttons_text'>Add new key</span>
                         </div>
@@ -77,6 +104,7 @@ class Editor extends Component {
         const editorGraph = this.props.arrayData.length !=0 &&
             <form className='editor__wrapper'>
                 {addNewSection}
+                {addNewKey}
                 <div className='editor__wrapper_container'>
                     {listInfo}
                     <div className='editor__graphMode_buttons'>
@@ -117,6 +145,44 @@ class Editor extends Component {
                 {choosenMode}
             </article>
         );
+    }
+    //open new key modal window
+    addNewKeyModal = (index) => {
+        this.setState({
+            addNewKeyFlag: true,
+            keyIndex: index
+        })
+    }
+
+    //new key text
+    addNewKeyText = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    //add new key
+    addNewKey = () => {
+        console.log(this.state.arrayData);
+        let temparr = this.state.arrayData;
+
+        let index = this.state.keyIndex;
+        console.log(index);
+
+        let newObject = {};
+        let name = this.state.newKeyName;
+        let value = this.state.newKeyValue;
+        newObject[name] = value;
+        console.log(newObject);
+        
+        
+        let newArr = temparr.slice(0, index+1).concat(newObject).concat(temparr.slice(index+1));
+        console.log(newArr);
+
+        this.setState({
+            arrayData: newArr,
+            addNewKeyFlag: false,
+        })
     }
 
     //open modal of add new section
