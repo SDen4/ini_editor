@@ -8,23 +8,27 @@ class Editor extends Component {
     }
     render() {
         //graph mode
-        const listInfo = this.props.arrayData.map( (key, index) => {
-            let finalArr = []
+        const listInfo = this.props.arrayData.map( (key) => {
+            let arrayTotal = []
             if(typeof key === 'string') {
-                finalArr.push(<h2 key={key} className='editor__graphMode_subtitle'>{key}</h2>)
+                arrayTotal.push(<h2 key={key} className='editor__graphMode_subtitle'>{key}</h2>)
             } else if (typeof key === 'object') {
                 for (let item in key) {
-                    finalArr.push(
+                    arrayTotal.push(
                         <label className='editor__graphMode_label' key={item}>
                             <span>{item}</span>
-                            <input type='text' defaultValue={key[item]}></input>
+                            <input
+                                type={isFinite(key[item]) ? 'number' : 'text'}
+                                defaultValue={key[item]}
+                                onChange={this.handleChangeGraph}
+                            ></input>
                         </label>
                     );
                 }
             } else {
                 throw new Error('unknown type of data');
             }
-            return finalArr;
+            return arrayTotal;
         });
         const editorGraph = <form className='editor__wrapper'>{listInfo}</form>;
 
@@ -34,7 +38,7 @@ class Editor extends Component {
                 <textarea
                     className='editor__textMode'
                     defaultValue={this.props.stringData}
-                    onChange={this.handleChange}
+                    onChange={this.handleChangeText}
                 ></textarea>
                 <button
                     // className='button button__mode button__save'
@@ -53,7 +57,12 @@ class Editor extends Component {
             </article>
         );
     }
-    handleChange = (e) => {
+    handleChangeGraph = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+    handleChangeText = (e) => {
         this.setState({
             iniText: e.target.value,
             buttonSaveActive: true

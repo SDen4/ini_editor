@@ -55,7 +55,6 @@ class App extends Component {
         });
 
         let file = e.target.files[0];
-        let arrKeys = [], arrInfo = [];
 
         let reader = new FileReader();
         reader.readAsText(file);
@@ -64,6 +63,7 @@ class App extends Component {
             let stringData = reader.result;
             let obj = this.parseINIString(reader.result);
 
+            console.log(stringData);
             console.log(obj);
             let arrayData = [];
 
