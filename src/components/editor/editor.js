@@ -135,7 +135,7 @@ class Editor extends Component {
         //conditions of choode one of two modes
         const choosenMode = this.props.graphMode ? editorGraph : editorText;
 
-        const notice = this.props.arrayData.length == 0 && 
+        const notice = this.state.stringData.length == 0 && 
             <div className='editor__notice'>Please, download ini-file.</div>
 
         return (

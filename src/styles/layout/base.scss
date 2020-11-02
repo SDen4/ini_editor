@@ -38,7 +38,18 @@ button {
   }
 }
 
+//Delete blue mark of tap in mobile version
+button, input {
+  -webkit-tap-highlight-color: transparent;
+}
+
 a {
   cursor: pointer;
   color: inherit;
+}
+
+//always show arrows in inputs type number
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  opacity: 1;
 }
