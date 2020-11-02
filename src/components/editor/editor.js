@@ -22,7 +22,7 @@ class Editor extends Component {
     }
 
     render() {
-        //graph mode
+        //add new key in graph mode
         const addNewKey = this.state.addNewKeyFlag &&
             <div className='editor__graph_addNewSection'>
                 <h2 className='editor__graph_addNewSection_text'>Enter the new key</h2>
@@ -47,6 +47,7 @@ class Editor extends Component {
                 </label>
             </div>
 
+        //list in graph mode
         const listInfo = this.state.arrayData.map( (key, index) => {
             let arrayTotal = []
             if(typeof key === 'string') {
@@ -83,7 +84,7 @@ class Editor extends Component {
             return arrayTotal;
         });
 
-        //add new section in graph mode
+        //add new section modal window in graph mode
         const addNewSection = this.state.addNewSectionFlag && 
             <div className='editor__graph_addNewSection'>
                 <h2 className='editor__graph_addNewSection_text'>Enter the name of new section</h2>
@@ -101,8 +102,9 @@ class Editor extends Component {
                 </label>
             </div>
 
-        const editorGraph = this.props.arrayData.length !=0 &&
-            <form className='editor__wrapper'>
+        //graph mode
+        const editorGraph = this.state.arrayData.length !=0 &&
+            <form className='editor__wrapper' onSubmit={this.saveGraphMode}>
                 {addNewSection}
                 {addNewKey}
                 <div className='editor__wrapper_container'>
@@ -114,12 +116,16 @@ class Editor extends Component {
                             onClick={this.addNewSectionModal}
                         >+</button>
                         <span className='editor__graphMode_buttons_text'>Add new section</span>
+                        <button
+                            className={`${this.state.buttonSaveActive && 'button__mode'} ${'button button__save'}`}
+                            type='submit'
+                        >Save</button>
                     </div>
                 </div>
             </form>;
 
         //test mode
-        const editorText = 
+        const editorText =
             <form className='editor__wrapper' onSubmit={this.saveTextMode}>
                 <textarea
                     className='editor__textMode'
@@ -135,6 +141,7 @@ class Editor extends Component {
         //conditions of choode one of two modes
         const choosenMode = this.props.graphMode ? editorGraph : editorText;
 
+        //notice of adding new ini-file
         const notice = this.state.stringData.length == 0 && 
             <div className='editor__notice'>Please, download ini-file.</div>
 
@@ -146,6 +153,7 @@ class Editor extends Component {
             </article>
         );
     }
+
     //open new key modal window
     addNewKeyModal = (index) => {
         this.setState({
@@ -157,7 +165,8 @@ class Editor extends Component {
     //new key text
     addNewKeyText = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            buttonSaveActive: true
         })
     }
 
@@ -184,6 +193,7 @@ class Editor extends Component {
         this.setState({
             arrayData: newArr,
             addNewKeyFlag: false,
+            buttonSaveActive: true,
             newKeyName: '',
             newKeyValue: '',
         })
@@ -228,6 +238,32 @@ class Editor extends Component {
             iniText: e.target.value,
             buttonSaveActive: true
         })
+    }
+
+    //save graph mode
+    saveGraphMode = (e) => {
+        e.preventDefault();
+        // let data = this.state.arrayData;
+        // this.saveData(data);
+        let arr = this.state.arrayData;
+        console.log(arr);
+        // let sss = arr.map((item) => {
+        //     let resultArr = [];
+        //     if(typeof item === 'string') {
+        //         let x = ('['+item+']').toString();
+        //         resultArr.push(x);
+        //     } else if (typeof item === 'object') {
+        //         for (let key in item) {
+        //             resultArr.push(`${key} = ${item[key]}`);
+        //         }
+        //     } else {
+        //         throw new Error('unknown data format!')
+        //     }
+        //     return resultArr;
+        // });
+        // console.log(sss);
+        // let result = arr.join('\r\n');
+        // console.log(result);
     }
 
     //save text mode file

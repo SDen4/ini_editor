@@ -46,7 +46,7 @@
         background-color: $borderColor;
         position: absolute;
         left: 0%;
-        top: -5px;
+        top: -10px;
     }
 }
 
@@ -54,6 +54,17 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    margin: 15px 0 20px;
+    &:first-child {
+        margin: 0 0 20px;
+        &:after {
+            display: none;
+        }
+    }
+}
+
+.editor__graphMode_subtitle {
+    font-weight: bold;
 }
 
 .editor__notice {
@@ -82,10 +93,6 @@
     }
 }
 
-.editor__graphMode_subtitle {
-    margin-bottom: 15px;
-}
-
 .editor__graphMode_label {
     width: 65%;
     display: flex;
@@ -102,15 +109,15 @@
 }
 
 .editor__graphMode_buttons {
-    margin-top: 20px;
+    margin: 20px 0 10px;
 }
 
 .editor__graphMode_buttons_text {
     font: {
         family: $mainFont;
-        size: 24px;
+        size: 18px;
     }
-    margin-left: 15px;
+    margin: 0 25px 0 5px;
 }
 
 .editor__graph_addNewSection {
