@@ -109,7 +109,15 @@
 }
 
 .editor__graphMode_buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 20px 0 10px;
+}
+
+.editor__graphMode_buttons_addNewSection {
+    display: flex;
+    align-items: center;
 }
 
 .editor__graphMode_buttons_text {

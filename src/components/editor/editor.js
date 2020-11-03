@@ -111,12 +111,14 @@ class Editor extends Component {
                 <div className='editor__wrapper_container'>
                     {listInfo}
                     <div className='editor__graphMode_buttons'>
-                        <button
-                            className='button button__mode button__add'
-                            type='button'
-                            onClick={this.addNewSectionModal}
-                        >+</button>
-                        <span className='editor__graphMode_buttons_text'>Add new section</span>
+                        <div className='editor__graphMode_buttons_addNewSection'>
+                            <button
+                                className='button button__mode button__add'
+                                type='button'
+                                onClick={this.addNewSectionModal}
+                            >+</button>
+                            <span className='editor__graphMode_buttons_text'>Add new section</span>
+                        </div>
                         <button
                             className={`${this.state.buttonSaveActive && 'button__mode'} ${'button button__save'}`}
                             type='submit'
