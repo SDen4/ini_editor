@@ -74,6 +74,22 @@ class App extends Component {
 
             console.log(arrayData);
 
+            // let sss = arrayData.map((item) => {
+            //     if(typeof item === 'string') {
+            //         return item
+            //     } else if (typeof item === 'object') {
+            //         while ()
+            //         for(let key in item) {
+            //             return (`{${key}: ${item[key]}}`);
+            //         }
+            //     }
+            // })
+
+            // console.log(sss);
+
+
+
+
             this.setState({
                 stringData: stringData,
                 arrayData: arrayData,

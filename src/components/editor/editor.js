@@ -243,27 +243,23 @@ class Editor extends Component {
     //save graph mode
     saveGraphMode = (e) => {
         e.preventDefault();
-        // let data = this.state.arrayData;
-        // this.saveData(data);
-        let arr = this.state.arrayData;
-        console.log(arr);
-        // let sss = arr.map((item) => {
-        //     let resultArr = [];
-        //     if(typeof item === 'string') {
-        //         let x = ('['+item+']').toString();
-        //         resultArr.push(x);
-        //     } else if (typeof item === 'object') {
-        //         for (let key in item) {
-        //             resultArr.push(`${key} = ${item[key]}`);
-        //         }
-        //     } else {
-        //         throw new Error('unknown data format!')
-        //     }
-        //     return resultArr;
-        // });
-        // console.log(sss);
-        // let result = arr.join('\r\n');
-        // console.log(result);
+        let data = this.state.arrayData;
+        let resultArr = [];
+
+        for(let i = 0; i < data.length; i++) {
+            if(typeof data[i] === 'string') {
+                resultArr.push('\r\n' + `[${data[i]}]`);
+            } else if (typeof data[i] === 'object') {
+                for (let key in data[i]) {
+                    resultArr.push(`${key} = ${data[i][key]}`);
+                }
+            } else {
+                throw new Error('unknown data format!')
+            }
+        }
+        let resultStr = resultArr.join('\r\n');
+
+        this.saveData(resultStr);
     }
 
     //save text mode file
