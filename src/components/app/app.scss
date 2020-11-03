@@ -1,6 +1,5 @@
 .app,
-.app__buttons,
-.app__buttons_wrapper {
+.app__buttons {
     display: flex;
     flex-direction: column;
 }
@@ -27,10 +26,6 @@
 
 .app__buttons {
     width: 30%;
-}
-
-.app__buttons_wrapper {
-    margin-bottom: 20px;
 }
 
 #app__input {

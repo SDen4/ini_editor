@@ -18,14 +18,12 @@ class App extends Component {
                         arrayData={this.state.arrayData}
                         graphMode={this.state.graphMode}
                     />
-                    <div className='app__buttons'>
-                        <div className='app__buttons_wrapper'>
-                            <button
-                                className='button button__mode'
-                                type='button'
-                                onClick={this.changeMode}
-                            >{this.state.graphMode ? 'Text mode' : 'Graph mode'}</button>
-                        </div>
+                    <aside className='app__buttons'>
+                        <button
+                            className='button button__mode'
+                            type='button'
+                            onClick={this.changeMode}
+                        >{this.state.graphMode ? 'Text mode' : 'Graph mode'}</button>
                         <label className='app__buttons_wrapper' htmlFor='app__input'>
                             <input
                                 id='app__input'
@@ -36,7 +34,7 @@ class App extends Component {
                             ></input>
                             <div className='button button__mode button__mode_input'>Download ini-file</div>
                         </label>
-                    </div>
+                    </aside>
                 </section>
             </article>
         );

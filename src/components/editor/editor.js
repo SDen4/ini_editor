@@ -52,8 +52,8 @@ class Editor extends Component {
             let arrayTotal = []
             if(typeof key === 'string') {
                 arrayTotal.push(
-                    <div className='editor__graphMode_subtitle_wrapper'>
-                        <h2 key={key} className='editor__graphMode_subtitle'>{key}</h2>
+                    <div className='editor__graphMode_subtitle_wrapper' key={index}>
+                        <h2 className='editor__graphMode_subtitle'>{key}</h2>
                         <div className='editor__graphMode_subtitle_buttons'>
                             <button
                                 className='button button__mode button__add'
@@ -66,13 +66,12 @@ class Editor extends Component {
             } else if (typeof key === 'object') {
                 for (let item in key) {
                     arrayTotal.push(
-                        <label className='editor__graphMode_label' key={item}>
+                        <label className='editor__graphMode_label' key={index}>
                             <span>{item}</span>
                             <input
                                 className='editor__grahpMode_input'
                                 type={isFinite(key[item]) ? 'number' : 'text'} //check input for numbers
                                 defaultValue={key[item]}
-                                // name={this.state.arrayData[index]}
                                 name={item}
                                 onChange={(e) => this.handleChangeGraph(e, index)}
                             ></input>
@@ -149,11 +148,11 @@ class Editor extends Component {
             <div className='editor__notice'>Please, download ini-file.</div>
 
         return (
-            <article className='editor'>
+            <div className='editor'>
                 <h1 className='editor__title'>{this.props.graphMode ? 'Graph mode' : 'Text mode'}</h1>
                 {notice}
                 {choosenMode}
-            </article>
+            </div>
         );
     }
 
