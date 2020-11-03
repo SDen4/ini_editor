@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Editor from '../editor/editor';
+import {parseINIString} from '../../scripts/parserIniString';
 
 
 class App extends Component {
@@ -59,7 +60,7 @@ class App extends Component {
 
         reader.onloadend = () => {
             let stringData = reader.result;
-            let obj = this.parseINIString(reader.result);
+            let obj = parseINIString(reader.result);
 
             console.log(stringData);
             console.log(obj);
@@ -95,37 +96,6 @@ class App extends Component {
                 arrayData: resultArr,
             })
         };
-        // localStorage.setItem('file', res);
-    }
-    //parser ini to object
-    parseINIString(data){
-        let regex = {
-            section: /^\s*\[\s*([^\]]*)\s*\]\s*$/,
-            param: /^\s*([^=]+?)\s*=\s*(.*?)\s*$/,
-            comment: /^\s*;.*$/
-        };
-        let value = {};
-        let lines = data.split(/[\r\n]+/);
-        let section = null;
-        lines.forEach(function(line){
-            if(regex.comment.test(line)){
-                return;
-            }else if(regex.param.test(line)){
-                let match = line.match(regex.param);
-                if(section){
-                    value[section][match[1]] = match[2];
-                }else{
-                    value[match[1]] = match[2];
-                }
-            }else if(regex.section.test(line)){
-                let match = line.match(regex.section);
-                value[match[1]] = {};
-                section = match[1];
-            }else if(line.length == 0 && section){
-                section = null;
-            };
-        });
-        return value;
     }
 };
 
