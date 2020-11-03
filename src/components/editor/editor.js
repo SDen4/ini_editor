@@ -72,8 +72,9 @@ class Editor extends Component {
                                 className='editor__grahpMode_input'
                                 type={isFinite(key[item]) ? 'number' : 'text'} //check input for numbers
                                 defaultValue={key[item]}
-                                name={item + index} //plus index for unic name
-                                onChange={this.handleChangeGraph}
+                                // name={this.state.arrayData[index]}
+                                name={item}
+                                onChange={(e) => this.handleChangeGraph(e, index)}
                             ></input>
                         </label>
                     );
@@ -219,17 +220,26 @@ class Editor extends Component {
         if(!this.state.newSectionName) return;
         this.setState({
             addNewSectionFlag: false,
+            buttonSaveActive: true,
             arrayData: [...this.state.arrayData, this.state.newSectionName],
             newSectionName: '',
         })
     }
 
     //change inputs data in graph mode
-    handleChangeGraph = (e) => {
+    handleChangeGraph = (e, index) => {
+        let temparr = this.state.arrayData;
+        let resultObj = temparr[index];
+        let name = e.target.name
+
+        resultObj[name] = e.target.value;
+        temparr[index] = resultObj;
+
         this.setState({
-            [e.target.name]: e.target.value
+            arrayData: temparr
         })
-        console.log(this.state)
+
+        console.log(this.state.arrayData);
     }
 
     //change data in text mode
@@ -244,19 +254,18 @@ class Editor extends Component {
     saveGraphMode = (e) => {
         e.preventDefault();
         let data = this.state.arrayData;
-        let resultArr = [];
 
-        for(let i = 0; i < data.length; i++) {
-            if(typeof data[i] === 'string') {
-                resultArr.push('\r\n' + `[${data[i]}]`);
-            } else if (typeof data[i] === 'object') {
-                for (let key in data[i]) {
-                    resultArr.push(`${key} = ${data[i][key]}`);
+        let resultArr = data.map((item) => {
+            if(typeof item === 'string') {
+                return ('\r\n' + `[${item}]`);
+            } else if (typeof item === 'object') {
+                for (let key in item) {
+                    return (`${key} = ${item[key]}`);
                 }
             } else {
                 throw new Error('unknown data format!')
             }
-        }
+        })
         let resultStr = resultArr.join('\r\n');
 
         this.saveData(resultStr);

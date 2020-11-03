@@ -74,25 +74,27 @@ class App extends Component {
 
             console.log(arrayData);
 
-            // let sss = arrayData.map((item) => {
-            //     if(typeof item === 'string') {
-            //         return item
-            //     } else if (typeof item === 'object') {
-            //         while ()
-            //         for(let key in item) {
-            //             return (`{${key}: ${item[key]}}`);
-            //         }
-            //     }
-            // })
+            let resultArr = [];
 
-            // console.log(sss);
+            for(let i = 0; i < arrayData.length; i++) {
+                if(typeof arrayData[i] === 'string') {
+                    resultArr.push(arrayData[i]);
+                } else if (typeof arrayData[i] === 'object') {
+                    for (let key in arrayData[i]) {
+                        let jsonStr = `{"${key}": "${arrayData[i][key]}"}`;
+                        console.log(jsonStr);
+                        resultArr.push(JSON.parse(jsonStr));
+                    }
+                } else {
+                    throw new Error('unknown data format!')
+                }
+            }
 
-
-
+            console.log(resultArr);
 
             this.setState({
                 stringData: stringData,
-                arrayData: arrayData,
+                arrayData: resultArr,
             })
         };
         // localStorage.setItem('file', res);
