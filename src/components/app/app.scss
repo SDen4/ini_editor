@@ -1,5 +1,4 @@
-.app,
-.app__buttons {
+.app {
     display: flex;
     flex-direction: column;
 }
@@ -17,15 +16,18 @@
     padding: 10px;
 }
 
-.app__container {
+.app__wrapper {
+    display: flex;
     width: 98%;
     height: 60vh;
-    display: flex;
     justify-content: space-around;
 }
 
-.app__buttons {
-    width: 30%;
+.app__container {
+    display: flex;
+    width: 70%;
+    height: 60vh;
+    justify-content: space-around;
 }
 
 #app__input {

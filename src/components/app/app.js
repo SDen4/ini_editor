@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Editor from '../editor/editor';
+import Aside from '../aside/aside';
 import {parseINIString} from '../../scripts/parserIniString';
 
 
@@ -13,30 +14,20 @@ class App extends Component {
         return (
             <article className='app'>
                 <h1 className='app__title'>ini-editor</h1>
-                <section className='app__container'>
-                    <Editor
-                        stringData={this.state.stringData}
-                        arrayData={this.state.arrayData}
+                <div className='app__wrapper'>
+                    <section className='app__container'>
+                        <Editor
+                            stringData={this.state.stringData}
+                            arrayData={this.state.arrayData}
+                            graphMode={this.state.graphMode}
+                        />
+                    </section>
+                    <Aside
+                        handleFileLoad={(e) => this.handleFileLoad(e)}
+                        changeMode={this.changeMode}
                         graphMode={this.state.graphMode}
                     />
-                    <aside className='app__buttons'>
-                        <button
-                            className='button button__mode'
-                            type='button'
-                            onClick={this.changeMode}
-                        >{this.state.graphMode ? 'Text mode' : 'Graph mode'}</button>
-                        <label className='app__buttons_wrapper' htmlFor='app__input'>
-                            <input
-                                id='app__input'
-                                className='button button__mode'
-                                type='file'
-                                accept=".ini"
-                                onChange={(e)=>this.handleFileLoad(e)}
-                            ></input>
-                            <div className='button button__mode button__mode_input'>Download ini-file</div>
-                        </label>
-                    </aside>
-                </section>
+                </div>
             </article>
         );
     }
@@ -45,7 +36,7 @@ class App extends Component {
             graphMode: !this.state.graphMode
         })
     }
-    handleFileLoad(e) {
+    handleFileLoad = (e) => {
         e.preventDefault();
 
         //clear text area before download new file
