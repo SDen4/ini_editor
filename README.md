@@ -1,7 +1,7 @@
 ##  ini-editor
 ### by Denis Skryabin
 
-###  Template: html, react, scss
+###  Template: html, scss, js, react
 
 
 ### Run dev-server

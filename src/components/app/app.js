@@ -52,17 +52,12 @@ class App extends Component {
         reader.onloadend = () => {
             let stringData = reader.result;
             let obj = parseINIString(reader.result);
-
-            console.log(stringData);
-            console.log(obj);
             let arrayData = [];
 
             for (let key in obj) {
                 arrayData.push(key);
                 arrayData.push(obj[key]);
             }
-
-            console.log(arrayData);
 
             let resultArr = [];
 
@@ -79,8 +74,6 @@ class App extends Component {
                     throw new Error('unknown data format!')
                 }
             }
-
-            console.log(resultArr);
 
             this.setState({
                 stringData: stringData,

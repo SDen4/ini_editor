@@ -177,21 +177,15 @@ class Editor extends Component {
     addNewKey = () => {
         //protection of input empty keys
         if(!this.state.newKeyName || !this.state.newKeyValue) return;
-        console.log(this.state);
-        let temparr = this.state.arrayData;
-
-        let index = this.state.keyIndex;
-        console.log(index);
-
-        let newObject = {};
-        let name = this.state.newKeyName;
-        let value = this.state.newKeyValue;
+        let temparr = this.state.arrayData,
+            index = this.state.keyIndex,
+            newObject = {},
+            name = this.state.newKeyName,
+            value = this.state.newKeyValue;
+        
         newObject[name] = value;
-        console.log(newObject);
-        
-        
+
         let newArr = temparr.slice(0, index+1).concat(newObject).concat(temparr.slice(index+1));
-        console.log(newArr);
 
         this.setState({
             arrayData: newArr,
@@ -240,8 +234,6 @@ class Editor extends Component {
         this.setState({
             arrayData: temparr
         })
-
-        console.log(this.state.arrayData);
     }
 
     //change data in text mode

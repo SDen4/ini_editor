@@ -1,10 +1,4 @@
 //width
-  @mixin desktop() {
-    @media screen and (max-width: $desktop) {
-      @content;
-    }
-  }
-  
   @mixin laptop() {
     @media screen and (max-width: $laptop) {
       @content;
