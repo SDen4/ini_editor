@@ -238,7 +238,8 @@ class Editor extends Component {
         temparr[index] = resultObj;
 
         this.setState({
-            arrayData: temparr
+            arrayData: temparr,
+            buttonSaveActive: true
         })
     }
 
