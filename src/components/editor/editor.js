@@ -71,7 +71,7 @@ class Editor extends Component {
                             <span>{item}</span>
                             <input
                                 className='editor__grahpMode_input'
-                                type={isFinite(key[item]) ? 'number' : 'text'} //check input for numbers
+                                type={(isFinite(key[item]) && key[item] !== '') ? 'number' : 'text'} //check input for numbers
                                 value={key[item]}
                                 name={item}
                                 onChange={(e) => this.handleChangeGraph(e, index)}
