@@ -67,7 +67,6 @@ class App extends Component {
                 } else if (typeof arrayData[i] === 'object') {
                     for (let key in arrayData[i]) {
                         let jsonStr = `{"${key}": "${arrayData[i][key]}"}`;
-                        console.log(jsonStr);
                         resultArr.push(JSON.parse(jsonStr));
                     }
                 } else {
