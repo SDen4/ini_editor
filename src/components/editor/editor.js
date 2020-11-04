@@ -119,10 +119,13 @@ class Editor extends Component {
                             >+</button>
                             <span className='editor__graphMode_buttons_text'>Add new section</span>
                         </div>
-                        <button
-                            className={`${this.state.buttonSaveActive && 'button__mode'} ${'button button__save'}`}
-                            type='submit'
-                        >Save</button>
+                        <div className='button__save_container'>
+                            <button
+                                className={`${this.state.buttonSaveActive && 'button__mode'} ${'button button__save'}`}
+                                type='submit'
+                            >Save</button>
+                            <div className='button__save_notice'>No changes!</div>
+                        </div>
                     </div>
                 </div>
             </form>;
@@ -135,10 +138,13 @@ class Editor extends Component {
                     defaultValue={this.state.stringData}
                     onChange={this.handleChangeText}
                 ></textarea>
-                <button
-                    className={`${this.state.buttonSaveActive && 'button__mode'} ${'button button__save'}`}
-                    type='submit'
-                >Save</button>
+                <div className='button__save_container'>
+                    <button
+                        className={`${this.state.buttonSaveActive && 'button__mode'} ${'button button__save'}`}
+                        type='submit'
+                    >Save</button>
+                    <div className='button__save_notice button__save_notice_text'>No changes!</div>
+                </div>
             </form>;
 
         //conditions of choode one of two modes

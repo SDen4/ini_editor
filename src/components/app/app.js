@@ -59,6 +59,8 @@ class App extends Component {
                 arrayData.push(obj[key]);
             };
 
+            console.log(arrayData);
+
             for(let i = 0; i < arrayData.length; i++) {
                 if(typeof arrayData[i] === 'string') {
                     resultArr.push(arrayData[i]);

@@ -12,6 +12,26 @@
     }
 }
 
+.button__mode_input {
+    text-align: center;
+    cursor: pointer;
+}
+
+.button__save_container {
+    position: relative;
+}
+
+.button__save {
+    padding: 5px 50px;
+    margin-bottom: 0;
+    @include smartphone {
+        padding: 5px 25px;
+    }
+    &:hover ~ .button__save_notice {
+        display: block;
+    }
+}
+
 .button__mode {
     background-color: $button;
     transition: $transitionDuration;
@@ -19,18 +39,25 @@
     &:hover {
         background-color: $buttonGreenHover;
     }
-}
-
-.button__mode_input {
-    text-align: center;
-    cursor: pointer;
-}
-
-.button__save {
-    padding: 5px 50px;
-    @include smartphone {
-        padding: 5px 25px;
+    &:hover ~ .button__save_notice {
+        display: none;
     }
+}
+
+.button__save_notice {
+    display: none;
+    position: absolute;
+    top: 8px;
+    left: -108px;
+    background-color: $buttonGreenHover;
+    color: $textColor;
+    padding: 2px 5px;
+    border-radius: 5px;
+    min-width: fit-content;
+}
+
+.button__save_notice_text {
+    left: 165px;
 }
 
 .button__add {
