@@ -52,27 +52,33 @@ class App extends Component {
         reader.onloadend = () => {
             let stringData = reader.result;
             let obj = parseINIString(reader.result);
-            let arrayData = [];
+            let arrayData = [], resultArr = [];
 
             for (let key in obj) {
                 arrayData.push(key);
                 arrayData.push(obj[key]);
-            }
-
-            let resultArr = [];
+            };
 
             for(let i = 0; i < arrayData.length; i++) {
                 if(typeof arrayData[i] === 'string') {
                     resultArr.push(arrayData[i]);
                 } else if (typeof arrayData[i] === 'object') {
                     for (let key in arrayData[i]) {
-                        let jsonStr = `{"${key}": "${arrayData[i][key]}"}`;
-                        resultArr.push(JSON.parse(jsonStr));
+                        let correctSTR = `"${arrayData[i][key]}"`
+                        for(let i = 0; i < correctSTR.length; i++) {
+                            if(correctSTR[i] === '"' && correctSTR[i+1] === '"') {
+                                correctSTR = correctSTR.slice(1, correctSTR.length-1);
+                            }
+                        };
+                        let resultStr = `{"${key}": ${correctSTR}}`;
+                        let resultObj = {};
+                        resultObj = new Function( 'return (' + resultStr + ')' )();
+                        resultArr.push(resultObj);
                     }
                 } else {
                     throw new Error('unknown data format!')
                 }
-            }
+            };
 
             this.setState({
                 stringData: stringData,
