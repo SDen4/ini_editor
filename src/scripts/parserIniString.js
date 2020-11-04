@@ -1,3 +1,5 @@
+//parser ini-file to object
+
 export function parseINIString(data){
     let regex = {
         section: /^\s*\[\s*([^\]]*)\s*\]\s*$/,

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {save} from '../../scripts/save';
 
 
 class Editor extends Component {
@@ -126,7 +127,7 @@ class Editor extends Component {
                 </div>
             </form>;
 
-        //test mode
+        //text mode
         const editorText =
             <form className='editor__wrapper' onSubmit={this.saveTextMode}>
                 <textarea
@@ -251,6 +252,18 @@ class Editor extends Component {
         })
     }
 
+    //save a new ini-file
+    saveData = (data) => {
+        //protect saving witout changes & empty files
+        if(!this.state.buttonSaveActive) return;
+
+        save(data);
+    
+        this.setState({
+            buttonSaveActive: false
+        });
+    }
+
     //save graph mode
     saveGraphMode = (e) => {
         e.preventDefault();
@@ -276,35 +289,7 @@ class Editor extends Component {
     saveTextMode = (e) => {
         e.preventDefault();
         let data = this.state.iniText;
-        this.saveData(data)
-    }
-
-    //save a new ini-file
-    saveData = (data) => {
-        //protect saving witout changes & empty files
-        if(!this.state.buttonSaveActive) return;
-
-        let file = new Blob([data], {type: 'ini'});
-
-        //IE10
-        if (window.navigator.msSaveOrOpenBlob)
-            window.navigator.msSaveOrOpenBlob(file, 'new_ini_file.ini');
-        //others
-        else {
-            let a = document.createElement('a'),
-                url = URL.createObjectURL(file);
-            a.href = url;
-            a.download = 'new_ini_file.ini';
-            document.body.appendChild(a);
-            a.click();
-            setTimeout(function() {
-                document.body.removeChild(a);
-                window.URL.revokeObjectURL(url);
-            }, 0);
-        };
-        this.setState({
-            buttonSaveActive: false
-        });
+        this.saveData(data);
     }
 };
 
