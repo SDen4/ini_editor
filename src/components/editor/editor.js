@@ -71,7 +71,7 @@ class Editor extends Component {
                             <input
                                 className='editor__grahpMode_input'
                                 type={isFinite(key[item]) ? 'number' : 'text'} //check input for numbers
-                                defaultValue={key[item]}
+                                value={key[item]}
                                 name={item}
                                 onChange={(e) => this.handleChangeGraph(e, index)}
                             ></input>
@@ -176,7 +176,7 @@ class Editor extends Component {
     addNewKey = () => {
         //protection of input empty keys
         if(!this.state.newKeyName || !this.state.newKeyValue) return;
-        console.log(this.state.arrayData);
+        console.log(this.state);
         let temparr = this.state.arrayData;
 
         let index = this.state.keyIndex;
