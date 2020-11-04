@@ -45,7 +45,6 @@ class App extends Component {
         });
 
         let file = e.target.files[0];
-
         let reader = new FileReader();
         reader.readAsText(file);
 
@@ -58,8 +57,6 @@ class App extends Component {
                 arrayData.push(key);
                 arrayData.push(obj[key]);
             };
-
-            console.log(arrayData);
 
             for(let i = 0; i < arrayData.length; i++) {
                 if(typeof arrayData[i] === 'string') {
