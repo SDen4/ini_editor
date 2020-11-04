@@ -27,7 +27,7 @@ class Aside extends Component {
                         accept=".ini"
                         onChange={(e)=>this.handleFileLoad(e)}
                     ></input>
-                    <div className='button button__mode button__mode_input'>Download ini-file</div>
+                    <div className='button button__mode button__mode_input'>Download ini&#8209;file</div>
                 </label>
             </aside>
         );

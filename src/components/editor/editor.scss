@@ -1,5 +1,5 @@
 .editor {
-    width: 95%;
+    width: 100%;
     border: 2px solid $borderColor;
     border-radius: 15px;
     display: flex;
@@ -65,6 +65,10 @@
 
 .editor__graphMode_subtitle {
     font-weight: bold;
+    @include tablet {
+        width: 50%;
+        word-wrap: break-word;
+    }
 }
 
 .editor__notice {
@@ -75,6 +79,9 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    @include phone {
+        font-size: 22px;
+    }
 }
 
 .editor__textMode {
@@ -91,13 +98,26 @@
         family: $mainFont;
         size: $mainFontSize;
     }
+    @include laptop {
+        @include smartphoneGRZ {
+            margin-bottom: 5px;
+        }
+    }
 }
 
 .editor__graphMode_label {
-    width: 65%;
+    width: 70%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    @include laptop {
+        @include smartphoneGRZ {
+            width: 90%;
+        }
+    }
+    @include tablet {
+        width: 100%;
+    }
 }
 
 .editor__grahpMode_input {
@@ -105,7 +125,11 @@
     border: 0;
     border-radius: 3px;
     padding: 0 10px;
+    margin-left: 5px;
     font-size: 16px;
+    @include tablet {
+        width: 70%;
+    }
 }
 
 .editor__graphMode_buttons {
@@ -126,6 +150,14 @@
         size: 18px;
     }
     margin: 0 25px 0 5px;
+    @include tablet {
+        @include phoneGRZ {
+            margin: 0 5px;
+        }
+    }
+    @include smartphone {
+        margin: 0 5px;
+    }
 }
 
 .editor__graph_addNewSection {
@@ -150,14 +182,23 @@
     display: flex;
     justify-content: center;
     width: 98%;
+    @include smartphone {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.editor__grahpMode_input_addNewKey {
+    width: 45%;
 }
 
 .editor__grahpMode_input_addNewSection,
 .editor__grahpMode_input_addNewKey {
     font-size: 24px;
     margin-right : 20px;
-}
-
-.editor__grahpMode_input_addNewKey {
-    width: 45%;
+    @include smartphone {
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 80%;
+    }
 }
