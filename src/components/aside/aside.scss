@@ -1,8 +1,15 @@
 .aside__buttons {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 30%;
     @include smartphone {
         width: 100%;
     }
+}
+
+.aside__buttons_block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
