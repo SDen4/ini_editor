@@ -54,23 +54,27 @@ class Editor extends Component {
             if(typeof key === 'string') {
                 arrayTotal.push(
                     <div className='editor__graphMode_subtitle_wrapper' key={index}>
-                        <h2 className='editor__graphMode_subtitle'>{key}</h2>
+                        <h2
+                            className={`${this.props.darkTheme && 'editor_dark'} ${'editor__graphMode_subtitle'}`}
+                        >{key}</h2>
                         <div className='editor__graphMode_subtitle_buttons'>
                             <button
                                 className='button button__mode button__add'
                                 type='button'
                                 onClick={(e) => this.addNewKeyModal(index)}
                             >+</button>
-                            <span className='editor__graphMode_buttons_text'>Add new key</span>
+                            <span
+                                className={`${this.props.darkTheme && 'editor_dark'} ${'editor__graphMode_buttons_text'}`}
+                            >Add new key</span>
                         </div>
                     </div>)
             } else if (typeof key === 'object') {
                 for (let item in key) {
                     arrayTotal.push(
                         <label className='editor__graphMode_label' key={index}>
-                            <span>{item}</span>
+                            <span className={`${this.props.darkTheme && 'editor_dark'}`}>{item}</span>
                             <input
-                                className='editor__grahpMode_input'
+                                className={`${this.props.darkTheme && 'editor_dark'} ${'editor__grahpMode_input'}`}
                                 type={(isFinite(key[item]) && key[item] !== '') ? 'number' : 'text'} //check input for numbers
                                 value={key[item]}
                                 name={item}
@@ -117,7 +121,9 @@ class Editor extends Component {
                                 type='button'
                                 onClick={this.addNewSectionModal}
                             >+</button>
-                            <span className='editor__graphMode_buttons_text'>Add new section</span>
+                            <span
+                                className={`${this.props.darkTheme && 'editor_dark'} ${'editor__graphMode_buttons_text'}`}
+                            >Add new section</span>
                         </div>
                         <div className='button__save_container'>
                             <button
@@ -134,7 +140,7 @@ class Editor extends Component {
         const editorText =
             <form className='editor__wrapper' onSubmit={this.saveTextMode}>
                 <textarea
-                    className='editor__textMode'
+                    className={`${this.props.darkTheme && 'editor_dark'} ${'editor__textMode'}`}
                     defaultValue={this.state.stringData}
                     onChange={this.handleChangeText}
                 ></textarea>
@@ -152,7 +158,7 @@ class Editor extends Component {
 
         //notice of adding new ini-file
         const notice = this.state.stringData.length == 0 && 
-            <div className='editor__notice'>Please, download ini-file.</div>
+            <div className={`${this.props.darkTheme && 'editor_dark'} ${'editor__notice'}`}>Please, download ini-file.</div>
 
         return (
             <div className='editor'>
