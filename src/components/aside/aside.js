@@ -32,7 +32,10 @@ class Aside extends Component {
                     </label>
                 </div>
                 <div className='aside__buttons_block'>
-                    <button className='button button__mode'>Dark</button>
+                    <button
+                        className='button button__mode button__bottom'
+                        onClick={this.changeTheme}
+                    >{this.props.darkTheme ? 'Ligth' : 'Dark'}</button>
                 </div>
             </aside>
         );
@@ -42,6 +45,9 @@ class Aside extends Component {
     }
     changeMode = () => {
         this.props.changeMode();
+    }
+    changeTheme = () => {
+        this.props.changeTheme()
     }
 };
 

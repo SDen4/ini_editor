@@ -9,27 +9,38 @@ class App extends Component {
         arrayData: [],
         stringData: '',
         graphMode: true,
+        darkTheme: false,
     }
     render() {
         return (
-            <article className='app'>
-                <h1 className='app__title'>ini-editor</h1>
+            <article className={`${this.state.darkTheme && 'app_dark'} ${'app'}`}>
                 <div className='app__wrapper'>
-                    <section className='app__container'>
-                        <Editor
-                            stringData={this.state.stringData}
-                            arrayData={this.state.arrayData}
+                    <h1 className={`${this.state.darkTheme && 'app__title_dark'} ${'app__title'}`}>ini-editor</h1>
+                    <div className='app__main'>
+                        <section className='app__container'>
+                            <Editor
+                                stringData={this.state.stringData}
+                                arrayData={this.state.arrayData}
+                                graphMode={this.state.graphMode}
+                                darkTheme={this.state.darkTheme}
+                            />
+                        </section>
+                        <Aside
+                            handleFileLoad={(e) => this.handleFileLoad(e)}
                             graphMode={this.state.graphMode}
+                            darkTheme={this.state.darkTheme}
+                            changeMode={this.changeMode}
+                            changeTheme={this.changeTheme}
                         />
-                    </section>
-                    <Aside
-                        handleFileLoad={(e) => this.handleFileLoad(e)}
-                        changeMode={this.changeMode}
-                        graphMode={this.state.graphMode}
-                    />
+                    </div>
                 </div>
             </article>
         );
+    }
+    changeTheme = () => {
+        this.setState({
+            darkTheme: !this.state.darkTheme
+        })
     }
     changeMode = () => {
         this.setState({
