@@ -6,10 +6,6 @@
     color: $textColor;
 }
 
-.app_dark {
-    background-color: $BGColorDarkTheme;
-}
-
 .app__wrapper {
     display: flex;
     flex-direction: column;
@@ -30,10 +26,6 @@
     @include smartphone {
         margin-bottom: 0;
     }
-}
-
-.app__title_dark {
-    color: $textColorDarkTheme;
 }
 
 .app__main {

@@ -1,0 +1,19 @@
+body.darkTheme .app {
+    background-color: $BGColorDarkTheme;
+}
+
+body.darkTheme .app__title,
+body.darkTheme .editor__graphMode_subtitle,
+body.darkTheme .editor__graphMode_buttons_text,
+body.darkTheme .editor__graphMode_span,
+body.darkTheme .editor__grahpMode_input,
+body.darkTheme .editor__graphMode_buttons_text,
+body.darkTheme .editor__textMode,
+body.darkTheme .editor__notice,
+body.darkTheme .editor__graph_addNewSection_text{
+    color: $textColorDarkTheme;
+}
+
+body.darkTheme .editor__graph_addNewSection {
+    background-color: $addNewSectionBGColorDark;
+}

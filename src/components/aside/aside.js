@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 
 class Aside extends Component {
     state = {
-        graphMode: true
+        graphMode: true,
+        darkTheme: false
     }
     componentDidUpdate(prevProps) {
         if (this.props.graphMode === prevProps.graphMode) return;
@@ -35,7 +36,7 @@ class Aside extends Component {
                     <button
                         className='button button__mode button__bottom'
                         onClick={this.changeTheme}
-                    >{this.props.darkTheme ? 'Light' : 'Dark'}</button>
+                    >{this.state.darkTheme ? 'Light' : 'Dark'}</button>
                 </div>
             </aside>
         );
@@ -47,7 +48,10 @@ class Aside extends Component {
         this.props.changeMode();
     }
     changeTheme = () => {
-        this.props.changeTheme()
+        this.setState({
+            darkTheme: !this.state.darkTheme
+        })
+        document.body.classList.toggle('darkTheme');
     }
 };
 

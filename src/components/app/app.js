@@ -8,39 +8,30 @@ class App extends Component {
     state = {
         arrayData: [],
         stringData: '',
-        graphMode: true,
-        darkTheme: false,
+        graphMode: true
     }
     render() {
         return (
-            <article className={`${this.state.darkTheme && 'app_dark'} ${'app'}`}>
+            <article className='app'>
                 <div className='app__wrapper'>
-                    <h1 className={`${this.state.darkTheme && 'app__title_dark'} ${'app__title'}`}>ini-editor</h1>
+                    <h1 className='app__title'>ini-editor</h1>
                     <div className='app__main'>
                         <section className='app__container'>
                             <Editor
                                 stringData={this.state.stringData}
                                 arrayData={this.state.arrayData}
                                 graphMode={this.state.graphMode}
-                                darkTheme={this.state.darkTheme}
                             />
                         </section>
                         <Aside
                             handleFileLoad={(e) => this.handleFileLoad(e)}
                             graphMode={this.state.graphMode}
-                            darkTheme={this.state.darkTheme}
                             changeMode={this.changeMode}
-                            changeTheme={this.changeTheme}
                         />
                     </div>
                 </div>
             </article>
         );
-    }
-    changeTheme = () => {
-        this.setState({
-            darkTheme: !this.state.darkTheme
-        })
     }
     changeMode = () => {
         this.setState({
