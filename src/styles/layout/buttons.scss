@@ -4,6 +4,7 @@
     padding: 5px 10px;
     font-size: 24px;
     margin-bottom: 20px;
+
     @include smartphone {
         margin-bottom: 5px;
     }
@@ -21,10 +22,12 @@
 .button__save {
     padding: 5px 50px;
     margin-bottom: 0;
+
     @include smartphone {
         padding: 5px 25px;
     }
-    &:hover ~ .button__save_notice {
+
+    &:hover~.button__save_notice {
         display: block;
     }
 }
@@ -33,10 +36,12 @@
     background-color: $button;
     transition: $transitionDuration;
     cursor: pointer;
+
     &:hover {
         background-color: $buttonGreenHover;
     }
-    &:hover ~ .button__save_notice {
+
+    &:hover~.button__save_notice {
         display: none;
     }
 }

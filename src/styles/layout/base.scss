@@ -1,57 +1,73 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  font: {
-    family: $mainFont;
-    size: $mainFontSize;
-  }
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
+    font: {
+        family: $mainFont;
+        size: $mainFontSize;
+    }
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
 }
 
-body, button, ul, p, h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  padding: 0;
-  border: 0;
+body,
+button,
+ul,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 
 #root {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
 }
 
 ul {
-  list-style: none;
+    list-style: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: normal;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
 }
 
 button {
-  font: {
-    family: $mainFont;
-  }
+    font: {
+        family: $mainFont;
+    }
 }
 
 //Delete blue mark of tap in mobile version
-button, input {
-  -webkit-tap-highlight-color: transparent;
+button,
+input {
+    -webkit-tap-highlight-color: transparent;
 }
 
 a {
-  cursor: pointer;
-  color: inherit;
+    cursor: pointer;
+    color: inherit;
 }
 
 //always show arrows in inputs type number
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-  opacity: 1;
+    opacity: 1;
 }

@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: 30%;
+
     @include smartphone {
         width: 100%;
     }

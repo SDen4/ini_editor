@@ -1,38 +1,38 @@
-//width
-  @mixin laptop() {
+// ===== width =====
+@mixin laptop() {
     @media screen and (max-width: $laptop) {
-      @content;
+        @content;
     }
-  }
+}
 
-  @mixin tablet() {
+@mixin tablet() {
     @media screen and (max-width: $tablet) {
-      @content;
+        @content;
     }
-  }
-  
-  @mixin smartphone() {
+}
+
+@mixin smartphone() {
     @media screen and (max-width: $smartphone) {
-      @content;
+        @content;
     }
-  }
-  
-  @mixin phone() {
+}
+
+@mixin phone() {
     @media screen and (max-width: $phone) {
-      @content;
+        @content;
     }
-  }
+}
 
 
-//height
-  @mixin smartphoneGRZ() {
+// ===== height =====
+@mixin smartphoneGRZ() {
     @media screen and (max-height: $smartphone) {
-      @content;
+        @content;
     }
-  }
+}
 
-  @mixin phoneGRZ() {
+@mixin phoneGRZ() {
     @media screen and (max-height: $phone) {
-      @content;
+        @content;
     }
-  }
+}
